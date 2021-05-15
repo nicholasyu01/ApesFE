@@ -7,6 +7,7 @@ import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import WeekStats from "views/WeekStats/WeekStats.js";
 import TeamStats from "views/TeamStats/TeamStats.js";
+import Search from "views/Search/Search.js";
 
 const dashboardRoutes = [
   {
@@ -48,7 +49,7 @@ const dashboardRoutes = [
     path: "/search",
     name: "Search",
     icon: "search",
-    component: WeekStats,
+    component: Search,
     layout: "/admin" 
   },
 ];
