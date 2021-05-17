@@ -9,6 +9,10 @@ import WeekStats from "views/WeekStats/WeekStats.js";
 import TeamStats from "views/TeamStats/TeamStats.js";
 import Search from "views/Search/Search.js";
 import Keywords from "views/Keywords/Keywords.js";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Websites from "views/Websites/Websites.js";
+import LanguageIcon from '@material-ui/icons/Language';
+import UserAuth from 'views/UserAuth/UserAuth.js';
 
 const dashboardRoutes = [
   {
@@ -25,13 +29,13 @@ const dashboardRoutes = [
     component: UserProfile,
     layout: "/admin"
   },
-  {
-    path: "/table",
-    name: "Table List",
-    icon: "content_paste",
-    component: TableList,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/table",
+  //   name: "Table List",
+  //   icon: "content_paste",
+  //   component: TableList,
+  //   layout: "/admin"
+  // },
   // {
   //   path: "/week",
   //   name: "Week Stats",
@@ -56,8 +60,22 @@ const dashboardRoutes = [
   {
     path: "/keywords",
     name: "Keywords",
-    icon: "search",
+    icon: VpnKeyIcon,
     component: Keywords,
+    layout: "/admin" 
+  },
+  {
+    path: "/websites",
+    name: "Websites",
+    icon: LanguageIcon,
+    component: Websites,
+    layout: "/admin" 
+  },
+  {
+    path: "/signin",
+    name: "signin",
+    icon: LanguageIcon,
+    component: UserAuth,
     layout: "/admin" 
   },
 ];

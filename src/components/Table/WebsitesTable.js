@@ -24,7 +24,7 @@ const styles = theme => ({
 const useStyles = makeStyles(styles);
 
 export default function WeekTable(props) {
-    const { keywords } = props;
+    const { websites } = props;
     const classes = useStyles(styles);
 
     //TODO make the table more module to be used by any data
@@ -35,14 +35,15 @@ export default function WeekTable(props) {
                     <TableRow>
                         {/* <TableCell className={classes.border} padding="none">Id</TableCell> */}
                         <TableCell className={classes.border} padding="none">Name</TableCell>
+                        <TableCell className={classes.border} padding="none">Url</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {keywords?.map((row, key) => (
+                    {websites?.map((row, key) => (
                         <TableRow key={key}>
-                            {/* <TableCell className={classes.border} padding="none">{row.id}</TableCell> */}
+                            {/* <TableCell className={classess.border} padding="none">{row.id}</TableCell> */}
                             <TableCell className={classes.border} padding="none">{row.name}</TableCell>
-                            <TableCell className={classes.border} padding="none"></TableCell>
+                            <TableCell className={classes.border} padding="none">{row.url}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

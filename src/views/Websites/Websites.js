@@ -12,7 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import WeekTable from "components/Table/WeekTable.js";
 import { Test } from "components/api/api.js"
-import KeywordsTable from "components/Table/KeywordsTable.js";
+import WebsitesTable from "components/Table/WebsitesTable.js";
 
 
 const styles = theme => ({
@@ -36,14 +36,14 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles);
 
-export default function Keywords() {
+export default function Websites() {
   const classes = useStyles();
-  const [keywords, setKeywords] = useState();
+  const [websites, setWebsites] = useState();
 
   useEffect(() => {
-    axios.get('/api/keywords')
+    axios.get('/api/websites')
       .then(w => {
-        setKeywords(w.data);
+        setWebsites(w.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -57,10 +57,10 @@ export default function Keywords() {
         <Card>
           <CardBody>
             <div className={classes.typo}>
-              <h3><b>Keywords</b></h3>
+              <h3><b>Websites</b></h3>
             </div>
-            <KeywordsTable
-              keywords={keywords}
+            <WebsitesTable
+              websites={websites}
             />
           </CardBody>
         </Card>
