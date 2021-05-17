@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import WeekTable from "components/Table/WeekTable.js";
 import { Test } from "components/api/api.js"
+import KeywordsTable from "components/Table/KeywordsTable.js";
+
 
 const styles = theme => ({
   formControl: {
@@ -36,39 +38,18 @@ const useStyles = makeStyles(styles);
 
 export default function WeekStats() {
   const classes = useStyles();
-
-  const onSubmit = (event) => {
-    event.preventDefault()
-    console.log("submit");
-    axios.get('/api/keywords')
-      .then(w => {
-        // temp = w.data
-        //set state with x
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
-
-  const [weeks, setWeeks] = useState([]);
-
-  function updateWeeks() {
-    axios.get('/api/weeks')
-      .then(w => {
-        setWeeks(w.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const [keywords, setKeywords] = useState();
 
   useEffect(() => {
-    console.log("use effect");
+    axios.get('/api/keywords')
+      .then(w => {
+        setKeywords(w.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }, []);
 
-  function print() {
-    Test()
-  }
 
   return (
     <GridContainer>
@@ -76,20 +57,11 @@ export default function WeekStats() {
         <Card>
           <CardBody>
             <div className={classes.typo}>
-              <h3><b>Search</b></h3>
+              <h3><b>Keywords</b></h3>
             </div>
-            <form onSubmit={onSubmit} id="gameForm" className={classes.column}>
-                <TextField
-                className={classes.formControl}
-                id="awaySpread"
-                label="Search"
-                required
-                />
-              <Button type="submit" color="success">Search</Button>
-            </form>
-            <div>
-              test data
-            </div>
+            <KeywordsTable
+              keywords={keywords}
+            />
           </CardBody>
         </Card>
       </GridItem>

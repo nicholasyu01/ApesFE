@@ -8,6 +8,7 @@ import TableList from "views/TableList/TableList.js";
 import WeekStats from "views/WeekStats/WeekStats.js";
 import TeamStats from "views/TeamStats/TeamStats.js";
 import Search from "views/Search/Search.js";
+import Keywords from "views/Keywords/Keywords.js";
 
 const dashboardRoutes = [
   {
@@ -31,25 +32,32 @@ const dashboardRoutes = [
     component: TableList,
     layout: "/admin"
   },
-  {
-    path: "/week",
-    name: "Week Stats",
-    icon: "content_paste",
-    component: WeekStats,
-    layout: "/admin" 
-  },
-  {
-    path: "/team",
-    name: "Team Stats",
-    icon: "content_paste",
-    component: TeamStats,
-    layout: "/admin" 
-  },
+  // {
+  //   path: "/week",
+  //   name: "Week Stats",
+  //   icon: "content_paste",
+  //   component: WeekStats,
+  //   layout: "/admin" 
+  // },
+  // {
+  //   path: "/team",
+  //   name: "Team Stats",
+  //   icon: "content_paste",
+  //   component: TeamStats,
+  //   layout: "/admin" 
+  // },
   {
     path: "/search",
     name: "Search",
     icon: "search",
     component: Search,
+    layout: "/admin" 
+  },
+  {
+    path: "/keywords",
+    name: "Keywords",
+    icon: "search",
+    component: Keywords,
     layout: "/admin" 
   },
 ];
