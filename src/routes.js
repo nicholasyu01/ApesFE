@@ -72,11 +72,11 @@ const dashboardRoutes = [
     layout: "/admin" 
   },
   {
-    path: "/signin",
+    path: "login",
     name: "signin",
     icon: LanguageIcon,
     component: UserAuth,
-    layout: "/admin" 
+    layout: "/" 
   },
 ];
 

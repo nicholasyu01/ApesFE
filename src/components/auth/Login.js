@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import img from './avengers_setMGoons3.png';
 import { loginUser } from "../../actions/authActions";
+import { createBrowserHistory } from "history";
 
 
 function Copyright() {
@@ -91,15 +92,13 @@ export default function UserAuth(props) {
     loginUser(userData);
     console.log(email);
     console.log(password)
+    window.location.href = "/admin/search";
   };
 
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image}>
-        <img src={img} />
-      </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -161,6 +160,9 @@ export default function UserAuth(props) {
             </Grid>
           </form>
         </div>
+      </Grid>
+      <Grid item xs={false} sm={4} md={7} className={classes.image}>
+        <img src={img} />
       </Grid>
     </Grid>
   );

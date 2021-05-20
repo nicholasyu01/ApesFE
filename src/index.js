@@ -40,12 +40,13 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hist}>
       {/* <Route path="/login" component={Login} /> */}
-      <Route exact path="/" component={Login} />
-      {/* <Route path="/admin" component={Admin} /> */}
-      <Switch>
-        {/* <Redirect from="/" to="/admin/search" /> */}
+      <Route exact path="/login" component={Login} />
+      <Route path="/admin" component={Admin} />
+      
+      {/* <Switch>
+        <Redirect from="/" to="/admin/search" />
         <PrivateRoute exact path="/admin" component={Admin} />
-      </Switch>
+      </Switch> */}
     </Router>
   </Provider>
 ,

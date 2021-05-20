@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import WeekTable from "components/Table/WeekTable.js";
 import { Test } from "components/api/api.js"
+import SearchTable from "components/Table/SearchTable";
+import Table from "components/Table/Table.js";
 
 const styles = theme => ({
   formControl: {
@@ -36,38 +38,41 @@ const useStyles = makeStyles(styles);
 
 export default function WeekStats() {
   const classes = useStyles();
+  // const data = [{"name": "crm"}]
+  const [data, setData] = useState([]);
+  const [keywords, setKeywords] = useState({});
+  const [headers, setHeaders] = useState([]);
 
   const onSubmit = (event) => {
     event.preventDefault()
     console.log("submit");
-    axios.get('/api/keywords')
+    console.log(event.data);
+    axios.get('/api/websites/search/?search=' + event.target.search.value)
       .then(w => {
-        // temp = w.data
-        //set state with x
+        setData(w.data);
       })
       .catch(function (error) {
         console.log(error);
       })
-  }
-
-  const [weeks, setWeeks] = useState([]);
-
-  function updateWeeks() {
-    axios.get('/api/weeks')
-      .then(w => {
-        setWeeks(w.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   useEffect(() => {
-    console.log("use effect");
+    axios.get('/api/keywords')
+    .then(w => {
+      setKeywords(w.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    // formatKeywords()
   }, []);
 
-  function print() {
-    Test()
+  const formatKeywords = () => {
+    var temp = []
+    keywords.forEach(function(i){
+      temp.push(i.name)
+    })
+    setHeaders(temp);
   }
 
   return (
@@ -81,16 +86,28 @@ export default function WeekStats() {
             <form onSubmit={onSubmit} id="gameForm" className={classes.column}>
                 <TextField
                 className={classes.formControl}
-                id="awaySpread"
+                id="search"
                 label="Search"
                 required
                 />
               <Button type="submit" color="success">Search</Button>
             </form>
-            <div>
-              test data
-            </div>
+            <SearchTable
+              data={data}
+            />
           </CardBody>
+          <CardBody>
+              {/* <Table
+                tableHeaderColor="warning"
+                tableHead={keywords}
+                tableData={[
+                  ["1", "Dakota Rice", "$36,738", "Niger"],
+                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
+                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
+                  ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                ]}
+              /> */}
+            </CardBody>
         </Card>
       </GridItem>
     </GridContainer>

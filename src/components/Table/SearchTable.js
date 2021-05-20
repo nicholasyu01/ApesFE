@@ -7,14 +7,17 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 
 const styles = theme => ({
+    border: {
+        padding: "5px"
+    },
     container: {
         padding: "5px",
     }
 });
 const useStyles = makeStyles(styles);
 
-export default function WeekTable(props) {
-    const { keywords } = props;
+export default function SearchTable(props) {
+    const { data } = props;
     const classes = useStyles(styles);
 
     //TODO make the table more module to be used by any data
@@ -24,15 +27,15 @@ export default function WeekTable(props) {
                 <TableHead>
                     <TableRow>
                         {/* <TableCell className={classes.border} padding="none">Id</TableCell> */}
-                        <TableCell padding="none">Name</TableCell>
+                        <TableCell className={classes.border} padding="none">Websites</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {keywords?.map((row, key) => (
+                    {data?.map((row, key) => (
                         <TableRow key={key}>
                             {/* <TableCell className={classes.border} padding="none">{row.id}</TableCell> */}
-                            <TableCell padding="none">{row.name}</TableCell>
-                            <TableCell padding="none"></TableCell>
+                            <TableCell className={classes.border} padding="none">{row.name}</TableCell>
+                            <TableCell className={classes.border} padding="none"></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

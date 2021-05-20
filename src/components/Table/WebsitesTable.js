@@ -8,13 +8,6 @@ import TableCell from "@material-ui/core/TableCell";
 
 const styles = theme => ({
     border: {
-        [theme.breakpoints.down('md')]: {
-            borderTop: 0,
-            borderLeft: 1,
-            borderRight: 0,
-            boarderColor: 'black',
-            borderStyle: 'solid',
-        },
         padding: "5px"
     },
     container: {
