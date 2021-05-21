@@ -41,12 +41,17 @@ ReactDOM.render(
     <Router history={hist}>
       {/* <Route path="/login" component={Login} /> */}
       <Route exact path="/login" component={Login} />
-      <Route path="/admin" component={Admin} />
-      
-      {/* <Switch>
-        <Redirect from="/" to="/admin/search" />
-        <PrivateRoute exact path="/admin" component={Admin} />
-      </Switch> */}
+      <Route exact path="/admin" component={Admin} />
+      <Route exact path="/admin/user" component={Admin} />
+      {/* <Redirect from="/" to="/admin/search" /> */}
+      <Route exact path="/admin/search" component={Admin} />
+      <Route exact path="/admin/keywords" component={Admin} />
+      <Route path="/admin/websites" component={Admin} />
+
+      <Switch>
+        <Redirect from="/" to="/admin/keywords" />
+        {/* <PrivateRoute exact path="/admin" component={Admin} /> */}
+      </Switch>
     </Router>
   </Provider>
 ,

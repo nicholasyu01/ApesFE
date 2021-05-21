@@ -14,6 +14,10 @@ import WeekTable from "components/Table/WeekTable.js";
 import { Test } from "components/api/api.js"
 import SearchTable from "components/Table/SearchTable";
 import Table from "components/Table/Table.js";
+import Table2 from "components/Table/Table2.js";
+import CSRF from 'components/CSRF/CSRF.js';
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 const styles = theme => ({
   formControl: {
@@ -90,6 +94,7 @@ export default function WeekStats() {
                 label="Search"
                 required
                 />
+              <CSRF />
               <Button type="submit" color="success">Search</Button>
             </form>
             <SearchTable
@@ -108,6 +113,7 @@ export default function WeekStats() {
                 ]}
               /> */}
             </CardBody>
+            <Table2/>
         </Card>
       </GridItem>
     </GridContainer>

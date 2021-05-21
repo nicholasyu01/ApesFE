@@ -13,6 +13,8 @@ import Select from '@material-ui/core/Select';
 import WeekTable from "components/Table/WeekTable.js";
 import { Test } from "components/api/api.js"
 import KeywordsTable from "components/Table/KeywordsTable.js";
+import CSRF from 'components/CSRF/CSRF.js';
+import KeywordsTable2 from "components/Table/KeywordsTable2.js";
 
 
 const styles = theme => ({
@@ -50,6 +52,34 @@ export default function Keywords() {
       })
   }, []);
 
+  const onSubmit = (event) => {
+    event.preventDefault()
+    const data = {
+      csrfmiddlewaretoken: event.target.csrfmiddlewaretoken.value,
+      name: event.target.keyword.value,
+    }
+    const formData = new FormData()
+    formData.append('csrfmiddlewaretoken', event.target.csrfmiddlewaretoken.value);
+    formData.append('name', 'test_formdata')
+    axios.post('/api/keywords/add/', data)
+    .then((response) => {
+      console.log(response);
+      updateKeywords()
+    }, (error) => {
+      console.log(error);
+    });
+    event.target.reset();
+  }
+
+  function updateKeywords() {
+    axios.get('/api/keywords')
+      .then(w => {
+        setKeywords(w.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
 
   return (
     <GridContainer>
@@ -59,9 +89,20 @@ export default function Keywords() {
             <div className={classes.typo}>
               <h3><b>Keywords</b></h3>
             </div>
+            <form onSubmit={onSubmit} id="keywordForm" className={classes.column}>
+                <TextField
+                className={classes.formControl}
+                id="keyword"
+                label="Add Keyword"
+                required
+                />
+              <CSRF />
+              <Button type="submit" color="success">Add Keyword</Button>
+            </form>
             <KeywordsTable
               keywords={keywords}
             />
+            <KeywordsTable2/>
           </CardBody>
         </Card>
       </GridItem>
