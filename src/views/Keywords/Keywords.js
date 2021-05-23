@@ -15,6 +15,7 @@ import { Test } from "components/api/api.js"
 import KeywordsTable from "components/Table/KeywordsTable.js";
 import CSRF from 'components/CSRF/CSRF.js';
 import KeywordsTable2 from "components/Table/KeywordsTable2.js";
+import { getCookie } from 'components/CSRF/CSRFToken.js'
 
 
 const styles = theme => ({
@@ -41,6 +42,8 @@ const useStyles = makeStyles(styles);
 export default function Keywords() {
   const classes = useStyles();
   const [keywords, setKeywords] = useState();
+  const [selected, setSelected] = useState([]);
+  
 
   useEffect(() => {
     axios.get('/api/keywords')
@@ -81,6 +84,27 @@ export default function Keywords() {
       })
   }
 
+  const deleteKeywords = () => {
+    selected.forEach(function(keyword) {
+      const data = {
+        csrfmiddlewaretoken: getCookie('csrftoken'),
+        name: keyword,
+      }
+      const formData = new FormData()
+      formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+      formData.append('id', keyword)
+      axios.delete('/api/keywords/', {data: data})
+      .then((response) => {
+        console.log(response);
+        updateKeywords()
+      }, (error) => {
+        console.log(error);
+      });
+      console.log(keyword)
+    })
+    setSelected([]);
+  };
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -99,10 +123,15 @@ export default function Keywords() {
               <CSRF />
               <Button type="submit" color="success">Add Keyword</Button>
             </form>
-            <KeywordsTable
+            {/* <KeywordsTable
               keywords={keywords}
+            /> */}
+            <KeywordsTable2
+              keywords={keywords}
+              deleteKeywords={deleteKeywords}
+              selected={selected}
+              setSelected={setSelected}
             />
-            <KeywordsTable2/>
           </CardBody>
         </Card>
       </GridItem>
