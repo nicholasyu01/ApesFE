@@ -46,11 +46,13 @@ export default function WeekStats() {
   const [data, setData] = useState([]);
   const [keywords, setKeywords] = useState({});
   const [headers, setHeaders] = useState([]);
+  const [word, setWord] = useState();
 
   const onSubmit = (event) => {
     event.preventDefault()
     console.log("submit");
     console.log(event.data);
+    setWord(event.target.search.value);
     axios.get('/api/websites/search/?search=' + event.target.search.value)
       .then(w => {
         setData(w.data);
@@ -88,32 +90,21 @@ export default function WeekStats() {
               <h3><b>Search</b></h3>
             </div>
             <form onSubmit={onSubmit} id="gameForm" className={classes.column}>
-                <TextField
+              <TextField
                 className={classes.formControl}
                 id="search"
                 label="Search"
                 required
-                />
+              />
               <CSRF />
               <Button type="submit" color="success">Search</Button>
             </form>
             <SearchTable
               data={data}
+              word={word}
             />
           </CardBody>
-          <CardBody>
-              {/* <Table
-                tableHeaderColor="warning"
-                tableHead={keywords}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                ]}
-              /> */}
-            </CardBody>
-            <Table2/>
+            {/* <Table2/> */}
         </Card>
       </GridItem>
     </GridContainer>

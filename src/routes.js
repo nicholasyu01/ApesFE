@@ -22,13 +22,13 @@ const dashboardRoutes = [
     component: DashboardPage,
     layout: "/admin"
   },
-  {
-    path: "/user",
-    name: "User Profile",
-    icon: Person,
-    component: UserProfile,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/user",
+  //   name: "User Profile",
+  //   icon: Person,
+  //   component: UserProfile,
+  //   layout: "/admin"
+  // },
   // {
   //   path: "/table",
   //   name: "Table List",
@@ -73,8 +73,8 @@ const dashboardRoutes = [
   },
   {
     path: "login",
-    name: "signin",
-    icon: LanguageIcon,
+    name: "login",
+    icon: Person,
     component: UserAuth,
     layout: "/" 
   },

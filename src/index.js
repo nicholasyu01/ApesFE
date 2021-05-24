@@ -15,6 +15,9 @@ import store from "./store";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import Search from "./views/Search/Search.js"
+import Keyywords from "./views/Keywords/Keywords.js"
+import Websites from "./views/Websites/Websites.js"
 
 const hist = createBrowserHistory();
 // Check for token to keep user logged in
@@ -42,14 +45,14 @@ ReactDOM.render(
       {/* <Route path="/login" component={Login} /> */}
       <Route exact path="/login" component={Login} />
       <Route exact path="/admin" component={Admin} />
-      <Route exact path="/admin/user" component={Admin} />
+      <Route exact path="/admin/dashboard" component={Admin} />
       {/* <Redirect from="/" to="/admin/search" /> */}
       <Route exact path="/admin/search" component={Admin} />
       <Route exact path="/admin/keywords" component={Admin} />
       <Route path="/admin/websites" component={Admin} />
 
       <Switch>
-        <Redirect from="/" to="/admin/keywords" />
+        <Redirect from="/" to="/admin/search" />
         {/* <PrivateRoute exact path="/admin" component={Admin} /> */}
       </Switch>
     </Router>

@@ -46,13 +46,16 @@ export default function Keywords() {
   
 
   useEffect(() => {
-    axios.get('/api/keywords')
+    async function fetchData() {
+      await axios.get('/api/keywords')
       .then(w => {
         setKeywords(w.data);
       })
       .catch(function (error) {
         console.log(error);
       })
+    }
+    fetchData();
   }, []);
 
   const onSubmit = (event) => {
