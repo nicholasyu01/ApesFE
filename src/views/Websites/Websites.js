@@ -63,7 +63,7 @@ export default function Websites() {
   function formatHeads(w) {
     heads.push( { id: 'name', numeric: false, disablePadding: true, label: 'Websites' });
     heads.push( { id: 'url', numeric: true, disablePadding: false, label: 'Url' });
-    heads.push( { id: 'crm', numeric: true, disablePadding: false, label: 'crm' });
+    heads.push( { id: 'storage_url', numeric: true, disablePadding: false, label: 'Storage Url' });
     console.log(w)
     //TODO add dynamic key word head fomatting
     // websites.get(0).keywords.forEach(function(keyword) {

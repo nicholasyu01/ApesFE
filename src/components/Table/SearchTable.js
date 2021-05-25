@@ -33,7 +33,9 @@ export default function SearchTable(props) {
                     <TableRow>
                         {/* <TableCell className={classes.border} padding="none">Id</TableCell> */}
                         <TableCell className={classes.border} padding="none">Websites</TableCell>
-                        <TableCell className={classes.border} padding="none">{word}</TableCell>
+                        {/* <TableCell className={classes.border} padding="none">{word}</TableCell> */}
+                        <TableCell className={classes.border} padding="none">Url</TableCell>
+                        {/* <TableCell className={classes.border} padding="none">Storage Url</TableCell> */}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,7 +43,10 @@ export default function SearchTable(props) {
                         <TableRow key={key}>
                             {/* <TableCell className={classes.border} padding="none">{row.id}</TableCell> */}
                             <TableCell className={classes.border} padding="none">{row.name}</TableCell>
-                            <TableCell className={classes.border} padding="none">{row?.keywords?.crm}</TableCell>
+                            <TableCell className={classes.border} padding="none">{row.url}</TableCell>
+                            {/* <TableCell className={classes.border} padding="none">{row.storage_url}</TableCell> */}
+
+                            {/* <TableCell className={classes.border} padding="none">{row?.keywords?.crm}</TableCell> */}
                         </TableRow>
                     ))}
                 </TableBody>

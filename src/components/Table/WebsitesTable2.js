@@ -67,13 +67,6 @@ function stableSort(array, comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-    { id: 'name', numeric: false, disablePadding: true, label: 'Websites' },
-    { id: 'url', numeric: true, disablePadding: false, label: 'Url' },
-    { id: 'crm', numeric: true, disablePadding: false, label: 'crm' },
-    // { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    // { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-];
 
 function EnhancedTableHead(props) {
     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, heads } = props;
@@ -327,7 +320,7 @@ export default function WebsitesTable2(props) {
                                             {row.name}
                                         </TableCell>
                                         <TableCell align="left">{row.url}</TableCell>
-                                        <TableCell align="left">{row.keywords?.crm}</TableCell>
+                                        <TableCell align="left">{row.storage_url}</TableCell>
                                         {/* <TableCell align="right">{row.carbs}</TableCell>
                       <TableCell align="right">{row.protein}</TableCell> */}
                                     </TableRow>
