@@ -41,7 +41,7 @@ export default function SearchTable(props) {
                         <TableRow key={key}>
                             {/* <TableCell className={classes.border} padding="none">{row.id}</TableCell> */}
                             <TableCell className={classes.border} padding="none">{row.name}</TableCell>
-                            <TableCell className={classes.border} padding="none">{row.keywords.crm}</TableCell>
+                            <TableCell className={classes.border} padding="none">{row?.keywords?.crm}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
