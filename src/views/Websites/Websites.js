@@ -75,8 +75,6 @@ export default function Websites() {
     event.preventDefault()
     const data = {
       csrfmiddlewaretoken: event.target.csrfmiddlewaretoken.value,
-      name: event.target.name.value,
-      storage_url: event.target.storageUrl.value,
       url: event.target.url.value,
     }
     axios.post('/api/websites/add/', data)
@@ -125,18 +123,6 @@ export default function Websites() {
               <h3><b>Websites</b></h3>
             </div>
             <form onSubmit={onSubmit} id="websitesForm" className={classes.column}>
-              <TextField
-                className={classes.formControl}
-                id="name"
-                label="Name"
-                required
-              />
-              <TextField
-                className={classes.formControl}
-                id="storageUrl"
-                label="Storage URL"
-                required
-              />
               <TextField
                 className={classes.formControl}
                 id="url"
