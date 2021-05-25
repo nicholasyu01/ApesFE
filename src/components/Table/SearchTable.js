@@ -25,6 +25,7 @@ export default function SearchTable(props) {
         console.log(data)
     }
     //TODO make the table more module to be used by any data
+    //TODO diplay the count of the searched attribute
     return (
         <div className={classes.container} style={{ overflowX: "auto" }}>
             <Table >
@@ -40,7 +41,7 @@ export default function SearchTable(props) {
                         <TableRow key={key}>
                             {/* <TableCell className={classes.border} padding="none">{row.id}</TableCell> */}
                             <TableCell className={classes.border} padding="none">{row.name}</TableCell>
-                            {/* <TableCell className={classes.border} padding="none">{row.keywords.crm}</TableCell> */}
+                            <TableCell className={classes.border} padding="none">{row.keywords.crm}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
