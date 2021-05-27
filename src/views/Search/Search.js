@@ -108,9 +108,6 @@ export default function WeekStats() {
               data={data}
               word={word}
             />
-            <PrintJson
-              data={data}
-            />
           </CardBody>
             {/* <Table2/> */}
         </Card>

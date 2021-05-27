@@ -140,9 +140,6 @@ export default function Keywords() {
               selected={selected}
               setSelected={setSelected}
             />
-            <PrintJson
-              data={keywords}
-            />
           </CardBody>
         </Card>
       </GridItem>

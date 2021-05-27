@@ -186,6 +186,7 @@ EnhancedTableToolbar.propTypes = {
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        overflow: 'hidden'
     },
     paper: {
         width: '100%',
@@ -319,8 +320,9 @@ export default function WebsitesTable2(props) {
                                         <TableCell component="th" id={labelId} scope="row" padding="none">
                                             {row.name}
                                         </TableCell>
-                                        <TableCell align="left">{row.url}</TableCell>
-                                        <TableCell align="left">{row.storage_url}</TableCell>
+                                        <TableCell style={{ maxWidth: '300px', wordWrap: 'break-word' }}  align="left">{row.url}</TableCell>
+                                        <TableCell style={{ maxWidth: '300x', wordBreak: 'break-all' }}  align="left">{row.storage_url}</TableCell>
+                                        <TableCell style={{ wordBreak: 'break-all', wordBreak: 'break-all' }}  align="left">{JSON.stringify(row.keywords)}</TableCell>
                                         {/* <TableCell align="right">{row.carbs}</TableCell>
                       <TableCell align="right">{row.protein}</TableCell> */}
                                     </TableRow>

@@ -55,6 +55,7 @@ export default function Websites() {
     axios.get('/api/websites')
       .then(w => {
         setWebsites(w.data);
+        console.log("DATA: " + JSON.stringify(w.data[0].keywords))
       })
       .catch(function (error) {
         console.log(error);
@@ -69,10 +70,11 @@ export default function Websites() {
     heads.push( { id: 'name', numeric: false, disablePadding: true, label: 'Websites' });
     heads.push( { id: 'url', numeric: true, disablePadding: false, label: 'Url' });
     heads.push( { id: 'storage_url', numeric: true, disablePadding: false, label: 'Storage Url' });
+    //heads.push( { id: 'keywords', numeric: false, disablePadding: false, label: 'Keywords' });
     console.log(w)
     //TODO add dynamic key word head fomatting
     // websites.get(0).keywords.forEach(function(keyword) {
-    //   heads.push( { id: keyword, numeric: true, disablePadding: false, label: keyword });
+    //   heads.push( { id: keyword, numeric: false, disablePadding: false, label: keyword });
     // })
   }
 
@@ -146,9 +148,6 @@ export default function Websites() {
               selected={selected}
               setSelected={setSelected}
               heads={heads}
-            />
-            <PrintJson
-              data={websites}
             />
           </CardBody>
         </Card>
