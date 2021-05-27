@@ -51,13 +51,6 @@ const dashboardRoutes = [
   //   layout: "/admin" 
   // },
   {
-    path: "/search",
-    name: "Search",
-    icon: "search",
-    component: Search,
-    layout: "/admin" 
-  },
-  {
     path: "/keywords",
     name: "Keywords",
     icon: VpnKeyIcon,
@@ -72,8 +65,15 @@ const dashboardRoutes = [
     layout: "/admin" 
   },
   {
+    path: "/search",
+    name: "Search",
+    icon: "search",
+    component: Search,
+    layout: "/admin" 
+  },
+  {
     path: "login",
-    name: "login",
+    name: "Logout",
     icon: Person,
     component: UserAuth,
     layout: "/" 
