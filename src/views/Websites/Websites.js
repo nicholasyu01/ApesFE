@@ -39,6 +39,11 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles);
 
+const PrintJson = ({data}) => {
+  // (destructured) data could be a prop for example
+  return (<div><pre>{ JSON.stringify(data, null, 2) }</pre></div>);
+}
+
 export default function Websites() {
   const classes = useStyles();
   const [websites, setWebsites] = useState();
@@ -155,6 +160,9 @@ export default function Websites() {
               selected={selected}
               setSelected={setSelected}
               heads={heads}
+            />
+            <PrintJson
+              data={websites}
             />
           </CardBody>
         </Card>

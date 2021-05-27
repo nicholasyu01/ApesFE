@@ -40,6 +40,11 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles);
 
+const PrintJson = ({data}) => {
+  // (destructured) data could be a prop for example
+  return (<div><pre>{ JSON.stringify(data, null, 2) }</pre></div>);
+}
+
 export default function WeekStats() {
   const classes = useStyles();
   // const data = [{"name": "crm"}]
@@ -102,6 +107,9 @@ export default function WeekStats() {
             <SearchTable
               data={data}
               word={word}
+            />
+            <PrintJson
+              data={data}
             />
           </CardBody>
             {/* <Table2/> */}

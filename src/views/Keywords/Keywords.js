@@ -39,6 +39,11 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles);
 
+const PrintJson = ({data}) => {
+  // (destructured) data could be a prop for example
+  return (<div><pre>{ JSON.stringify(data, null, 2) }</pre></div>);
+}
+
 export default function Keywords() {
   const classes = useStyles();
   const [keywords, setKeywords] = useState();
@@ -134,6 +139,9 @@ export default function Keywords() {
               deleteKeywords={deleteKeywords}
               selected={selected}
               setSelected={setSelected}
+            />
+            <PrintJson
+              data={keywords}
             />
           </CardBody>
         </Card>
