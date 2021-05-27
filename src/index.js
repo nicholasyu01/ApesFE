@@ -52,7 +52,7 @@ ReactDOM.render(
       <Route path="/admin/websites" component={Admin} />
 
       <Switch>
-        <Redirect from="/" to="/admin/search" />
+        <Redirect from="/" to="/admin/keywords" />
         {/* <PrivateRoute exact path="/admin" component={Admin} /> */}
       </Switch>
     </Router>
