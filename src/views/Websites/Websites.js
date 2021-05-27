@@ -16,6 +16,7 @@ import WebsitesTable from "components/Table/WebsitesTable.js";
 import WebsitesTable2 from "components/Table/WebsitesTable2.js";
 import CSRF from 'components/CSRF/CSRF.js';
 import { getCookie } from 'components/CSRF/CSRFToken.js'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const styles = theme => ({
@@ -49,6 +50,7 @@ export default function Websites() {
   const [websites, setWebsites] = useState();
   const [selected, setSelected] = useState([]);
   const [heads, setHeads] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // async function fetchData() {
@@ -56,6 +58,7 @@ export default function Websites() {
       .then(w => {
         setWebsites(w.data);
         console.log("DATA: " + JSON.stringify(w.data[0].keywords))
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -79,6 +82,7 @@ export default function Websites() {
   }
 
   const onSubmit = (event) => {
+    setLoading(true);
     event.preventDefault()
     const data = {
       csrfmiddlewaretoken: event.target.csrfmiddlewaretoken.value,
@@ -98,6 +102,7 @@ export default function Websites() {
     axios.get('/api/websites')
       .then(w => {
         setWebsites(w.data);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -105,6 +110,7 @@ export default function Websites() {
   }
 
   const deleteWebsites = () => {
+    setLoading(true);
     selected.forEach(function(website) {
       const data = {
         csrfmiddlewaretoken: getCookie('csrftoken'),
@@ -142,6 +148,7 @@ export default function Websites() {
             {/* <WebsitesTable
               websites={websites}
             /> */}
+            { loading && <LinearProgress />}
             <WebsitesTable2
               websites={websites}
               deleteWebsites={deleteWebsites}

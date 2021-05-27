@@ -16,6 +16,7 @@ import SearchTable from "components/Table/SearchTable";
 import Table from "components/Table/Table.js";
 import Table2 from "components/Table/Table2.js";
 import CSRF from 'components/CSRF/CSRF.js';
+import LinearProgress from '@material-ui/core/LinearProgress';
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
@@ -52,8 +53,10 @@ export default function WeekStats() {
   const [keywords, setKeywords] = useState({});
   const [headers, setHeaders] = useState([]);
   const [word, setWord] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (event) => {
+    setLoading(true);
     event.preventDefault()
     console.log("submit");
     console.log(event.data);
@@ -61,6 +64,7 @@ export default function WeekStats() {
     axios.get('/api/websites/search/?search=' + event.target.search.value)
       .then(w => {
         setData(w.data);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -104,6 +108,7 @@ export default function WeekStats() {
               <CSRF />
               <Button type="submit" color="success">Search</Button>
             </form>
+            { loading && <LinearProgress />}
             <SearchTable
               data={data}
               word={word}

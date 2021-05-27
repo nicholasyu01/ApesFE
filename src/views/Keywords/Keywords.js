@@ -16,6 +16,7 @@ import KeywordsTable from "components/Table/KeywordsTable.js";
 import CSRF from 'components/CSRF/CSRF.js';
 import KeywordsTable2 from "components/Table/KeywordsTable2.js";
 import { getCookie } from 'components/CSRF/CSRFToken.js'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const styles = theme => ({
@@ -48,13 +49,14 @@ export default function Keywords() {
   const classes = useStyles();
   const [keywords, setKeywords] = useState();
   const [selected, setSelected] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       await axios.get('/api/keywords')
       .then(w => {
         setKeywords(w.data);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -64,6 +66,7 @@ export default function Keywords() {
   }, []);
 
   const onSubmit = (event) => {
+    setLoading(true);
     event.preventDefault()
     const data = {
       csrfmiddlewaretoken: event.target.csrfmiddlewaretoken.value,
@@ -86,6 +89,7 @@ export default function Keywords() {
     axios.get('/api/keywords')
       .then(w => {
         setKeywords(w.data);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -93,6 +97,7 @@ export default function Keywords() {
   }
 
   const deleteKeywords = () => {
+    setLoading(true);
     selected.forEach(function(keyword) {
       const data = {
         csrfmiddlewaretoken: getCookie('csrftoken'),
@@ -134,6 +139,7 @@ export default function Keywords() {
             {/* <KeywordsTable
               keywords={keywords}
             /> */}
+            { loading && <LinearProgress />}
             <KeywordsTable2
               keywords={keywords}
               deleteKeywords={deleteKeywords}
